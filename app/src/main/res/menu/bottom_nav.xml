@@ -3,12 +3,14 @@
       xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/item_bottom_nav_cards"
+        android:icon="@drawable/ic_view_list_24dp"
         android:enabled="true"
         android:title="cards"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/item_bottom_nav_contacts"
         android:title="contacts"
+        android:icon="@drawable/ic_perm_contact_24dp"
         android:enabled="true"
         app:showAsAction="ifRoom" />
 </menu>

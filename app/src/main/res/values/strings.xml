@@ -4,4 +4,5 @@
     <string name="fc_accept">Подтвердить</string>
     <string name="fc_comment_id_et">Введите id комментария (1-500)</string>
     <string name="wrong_data">Неправильные данные</string>
+    <string name="fc_todo_id_et">Введите id юзера для просмотра todos</string>
 </resources>

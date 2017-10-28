@@ -32,16 +32,19 @@
                 <EditText
                     android:id="@+id/fc_post_id_et"
                     android:hint="@string/fc_post_id_et"
+                    android:textSize="14sp"
                     android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
                 <Button
                     android:id="@+id/fc_post_id_btn"
+                    android:layout_gravity="end"
                     android:layout_marginTop="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
                     android:text="@string/fc_accept"
-                    android:layout_width="match_parent"
+                    android:textSize="12sp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
                 <TextView
@@ -67,7 +70,9 @@
 
         <android.support.v7.widget.CardView
             android:id="@+id/fc_comment_card_view"
-            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -83,16 +88,19 @@
                 <EditText
                     android:id="@+id/fc_comment_id_et"
                     android:hint="@string/fc_comment_id_et"
+                    android:textSize="14sp"
                     android:inputType="number"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
                 <Button
                     android:id="@+id/fc_comment_id_btn"
+                    android:layout_gravity="end"
                     android:layout_marginTop="8dp"
                     style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                    android:textSize="12sp"
                     android:text="@string/fc_accept"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
                 <TextView
@@ -126,7 +134,9 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
-            android:layout_margin="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -143,6 +153,63 @@
                 android:id="@+id/fc_users_recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"/>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/fc_photo_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </android.support.v7.widget.CardView>
+
+        <android.support.v7.widget.CardView
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <EditText
+                    android:id="@+id/fc_todos_et"
+                    android:hint="@string/fc_todo_id_et"
+                    android:inputType="number"
+                    android:textSize="14sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <Button
+                    android:id="@+id/fc_todos_btn"
+                    android:text="@string/fc_accept"
+                    android:textSize="12sp"
+                    style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+                    android:layout_gravity="end"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/fc_todos_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+            </LinearLayout>
 
         </android.support.v7.widget.CardView>
 

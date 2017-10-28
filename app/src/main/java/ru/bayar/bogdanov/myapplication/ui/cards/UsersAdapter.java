@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,9 +26,9 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserViewHold
         }
     }
 
-    public void addUsers(List<User> userList) {
-        mUserList.addAll(userList);
-        notifyItemRangeInserted(0, userList.size());
+    public void addUsers(User user) {
+        mUserList.add(user);
+        notifyItemInserted(mUserList.size());
     }
 
     @Override

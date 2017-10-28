@@ -38,14 +38,31 @@ public class CardsPresenter extends BasePresenter<CardsView> {
     }
 
     public void getUserList() {
-        mApiService.getUsers()
+        for(int i = 1; i <= 5; i++) {
+            mApiService.getUser(i)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(user -> {
+                        getView().onUserGetSuccess(user);
+                    });
+        }
+    }
+
+    public void getPhoto(int i) {
+        mApiService.getPhoto(i)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .take(5)
-                .subscribe(users -> {
-                    getView().onUserListGetSuccess(users);
-                }, throwable -> {
-                    getView().onUserListGetError(throwable);
+                .subscribe(photo -> {
+                    getView().onGetUrlSuccess(photo.getUrl(), photo.getThumbnail());
+                });
+    }
+
+    public void getTodoList(int usersId) {
+        mApiService.getTodoList(usersId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(todoObjects -> {
+                    getView().onGetTodosListSuccess(usersId, todoObjects);
                 });
     }
 }

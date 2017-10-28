@@ -6,12 +6,18 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 
@@ -21,9 +27,12 @@ import butterknife.Unbinder;
 import ru.bayar.bogdanov.myapplication.R;
 import ru.bayar.bogdanov.myapplication.api.model.Comment;
 import ru.bayar.bogdanov.myapplication.api.model.Post;
+import ru.bayar.bogdanov.myapplication.api.model.TodoObject;
 import ru.bayar.bogdanov.myapplication.api.model.User;
 
 public class CardsFragment extends Fragment implements CardsView {
+
+    private static final String TAG = CardsFragment.class.getName();
 
     // post
     @BindView(R.id.fc_post_id_et)
@@ -53,9 +62,22 @@ public class CardsFragment extends Fragment implements CardsView {
     @BindView(R.id.fc_users_recycler_view)
     RecyclerView mUsersRecyclerView;
 
+    // photo
+    @BindView(R.id.fc_photo_iv)
+    ImageView mImageView;
+
+    // todos
+    @BindView(R.id.fc_todos_et)
+    EditText mTodosEditText;
+    @BindView(R.id.fc_todos_btn)
+    Button mTodosButton;
+    @BindView(R.id.fc_todos_recycler_view)
+    RecyclerView mTodosRecyclerView;
+
     private CardsPresenter mPresenter;
     private Unbinder mUnbinder;
     private UsersAdapter mUsersAdapter;
+    private TodosAdapter mTodosAdapter;
 
     @Nullable
     @Override
@@ -111,9 +133,21 @@ public class CardsFragment extends Fragment implements CardsView {
                 return false;
             }
         });
+
         mUsersAdapter = new UsersAdapter(null);
         mUsersRecyclerView.setAdapter(mUsersAdapter);
         mPresenter.getUserList();
+        mPresenter.getPhoto(3);
+
+        mTodosButton.setOnClickListener(v -> {
+            mTodosEditText.setError(null);
+            String idString = mTodosEditText.getText().toString();
+            if (!idString.isEmpty() && Integer.valueOf(idString) > 0 && Integer.valueOf(idString) <= 10) {
+                mPresenter.getTodoList(Integer.valueOf(idString));
+            } else {
+                mTodosEditText.setError(getString(R.string.wrong_data));
+            }
+        });
     }
 
     @Override
@@ -150,14 +184,29 @@ public class CardsFragment extends Fragment implements CardsView {
     }
 
     @Override
-    public void onUserListGetSuccess(ArrayList<User> users) {
+    public void onUserGetSuccess(User user) {
         mUsersMessageTextView.setVisibility(View.GONE);
-        mUsersAdapter.addUsers(users);
+        mUsersAdapter.addUsers(user);
     }
 
     @Override
-    public void onUserListGetError(Throwable throwable) {
-        mUsersMessageTextView.setVisibility(View.VISIBLE);
-        mUsersMessageTextView.setText(throwable.getMessage());
+    public void onGetUrlSuccess(String url, String thumbnailUrl) {
+        Log.i(TAG, "onGetUrlSuccess: url = " + url + ", thumbnail = " + thumbnailUrl);
+        Glide.with(this)
+                .load(thumbnailUrl)
+                .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.ALL))
+                .into(mImageView);
+    }
+
+    @Override
+    public void onGetTodosListSuccess(int usersId, ArrayList<TodoObject> todoObjects) {
+        Log.i(TAG, "onGetTodosListSuccess: objects.size() = " + todoObjects.size() + ", by usersId = " + usersId);
+        mTodosRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        });
+        mTodosRecyclerView.setAdapter(new TodosAdapter(todoObjects));
     }
 }
