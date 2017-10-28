@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MyApplication</string>
+    <string name="fc_post_id_et">Введите id поста (1-100)</string>
+    <string name="fc_accept">Подтвердить</string>
+    <string name="fc_comment_id_et">Введите id комментария (1-500)</string>
+    <string name="wrong_data">Неправильные данные</string>
+</resources>
