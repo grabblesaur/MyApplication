@@ -1,7 +1,8 @@
 package ru.bayar.bogdanov.myapplication.ui.cards;
 
 
-import ru.bayar.bogdanov.myapplication.api.ApiClient;
+import javax.inject.Inject;
+
 import ru.bayar.bogdanov.myapplication.api.ApiService;
 import ru.bayar.bogdanov.myapplication.base.BasePresenter;
 import rx.android.schedulers.AndroidSchedulers;
@@ -11,8 +12,9 @@ public class CardsPresenter extends BasePresenter<CardsView> {
 
     private ApiService mApiService;
 
-    public CardsPresenter() {
-        mApiService = ApiClient.getApiService(ApiClient.getClient());
+    @Inject
+    public CardsPresenter(ApiService apiService) {
+        mApiService = apiService;
     }
 
     public void getPost(int id) {

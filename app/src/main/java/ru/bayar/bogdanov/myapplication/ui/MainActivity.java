@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ru.bayar.bogdanov.myapplication.CustomItemSelectedListener;
+import ru.bayar.bogdanov.myapplication.utils.CustomItemSelectedListener;
 import ru.bayar.bogdanov.myapplication.R;
 import ru.bayar.bogdanov.myapplication.ui.cards.CardsFragment;
 import ru.bayar.bogdanov.myapplication.ui.contacts.ContactsFragment;

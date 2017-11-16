@@ -21,9 +21,12 @@ import com.bumptech.glide.request.RequestOptions;
 
 import java.util.ArrayList;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import ru.bayar.bogdanov.myapplication.Application;
 import ru.bayar.bogdanov.myapplication.R;
 import ru.bayar.bogdanov.myapplication.api.model.Comment;
 import ru.bayar.bogdanov.myapplication.api.model.Post;
@@ -74,7 +77,9 @@ public class CardsFragment extends Fragment implements CardsView {
     @BindView(R.id.fc_todos_recycler_view)
     RecyclerView mTodosRecyclerView;
 
-    private CardsPresenter mPresenter;
+    @Inject
+    CardsPresenter mPresenter;
+
     private Unbinder mUnbinder;
     private UsersAdapter mUsersAdapter;
     private TodosAdapter mTodosAdapter;
@@ -84,7 +89,7 @@ public class CardsFragment extends Fragment implements CardsView {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_cards, container, false);
         mUnbinder = ButterKnife.bind(this, view);
-        mPresenter = new CardsPresenter();
+        Application.getComponent(getActivity()).inject(this);
         mPresenter.attachView(this);
         return view;
     }

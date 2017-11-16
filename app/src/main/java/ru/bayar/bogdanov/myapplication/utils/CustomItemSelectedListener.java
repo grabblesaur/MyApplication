@@ -1,4 +1,4 @@
-package ru.bayar.bogdanov.myapplication;
+package ru.bayar.bogdanov.myapplication.utils;
 
 
 import android.os.SystemClock;
