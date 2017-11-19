@@ -10,6 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import ru.bayar.bogdanov.myapplication.api.ApiService;
+import ru.bayar.bogdanov.myapplication.utils.LocationUtils;
 
 /**
  * Created by android on 16.11.17.
@@ -44,5 +45,11 @@ class AppModule {
     @Provides
     public ApiService provideApiService(Retrofit retrofit) {
         return retrofit.create(ApiService.class);
+    }
+
+    @Singleton
+    @Provides
+    public LocationUtils provideLocationUtils() {
+        return new LocationUtils();
     }
 }
