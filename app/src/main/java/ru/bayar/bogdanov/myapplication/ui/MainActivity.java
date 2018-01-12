@@ -9,10 +9,11 @@ import android.view.MenuItem;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import ru.bayar.bogdanov.myapplication.utils.CustomItemSelectedListener;
 import ru.bayar.bogdanov.myapplication.R;
 import ru.bayar.bogdanov.myapplication.ui.cards.CardsFragment;
+import ru.bayar.bogdanov.myapplication.ui.ccp.CcpFragment;
 import ru.bayar.bogdanov.myapplication.ui.contacts.ContactsFragment;
+import ru.bayar.bogdanov.myapplication.utils.CustomItemSelectedListener;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -39,6 +40,9 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 } else if (item.getItemId() == R.id.item_bottom_nav_contacts) {
                     replaceFragment(new ContactsFragment(), ContactsFragment.class.getName());
+                    return true;
+                } else if (item.getItemId() == R.id.item_bottom_nav_ccp) {
+                    replaceFragment(new CcpFragment(), CcpFragment.class.getName());
                     return true;
                 } else {
                     return false;

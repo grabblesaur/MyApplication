@@ -13,4 +13,10 @@
         android:icon="@drawable/ic_perm_contact_24dp"
         android:enabled="true"
         app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/item_bottom_nav_ccp"
+        android:title="ccp"
+        android:icon="@drawable/ic_perm_contact_24dp"
+        android:enabled="true"
+        app:showAsAction="ifRoom" />
 </menu>

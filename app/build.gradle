@@ -49,5 +49,5 @@ dependencies {
     annotationProcessor 'com.google.dagger:dagger-compiler:2.13'
     compile 'com.google.android.gms:play-services:11.0.4'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-
+    compile 'com.github.joielechong:countrycodepicker:2.1.5'
 }
